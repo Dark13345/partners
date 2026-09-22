@@ -183,19 +183,22 @@
   .step-ring { position: relative; width: 60px; height: 60px; }
   .step-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
   .step-ring span { position: absolute; inset: 0; display: grid; place-items: center; font: 700 21px/1 var(--text); color: #16967a; }
-  .cpa-offer { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: end; margin-top: 48px; }
-  .cpa-offer h3 { font: 700 clamp(24px, 2.4vw, 32px)/1.2 var(--text); color: var(--orange); text-wrap: balance; }
-  .cpa-offer p { margin-top: 20px; font-size: 20px; line-height: 1.45; max-width: 560px; }
-  .cpa-offer .cpa-big { margin: 0; max-width: none; font: 700 clamp(38px, 4.6vw, 62px)/1.1 var(--text); letter-spacing: -0.01em; text-wrap: balance; }
+  .cpa-offer { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+  .offer-card { border-radius: var(--radius); padding: 44px; display: flex; flex-direction: column; min-width: 0; }
+  .offer-terms { background: #fff; gap: 20px; }
+  .offer-terms h3 { font: 700 clamp(24px, 2.3vw, 30px)/1.2 var(--text); color: var(--orange); text-wrap: balance; }
+  .offer-terms p { font-size: 18px; line-height: 1.5; }
+  .offer-terms .note { margin-top: auto; padding-top: 12px; font-size: 13px; }
+  .offer-pay { background: #000; color: #fff; justify-content: center; gap: 12px; }
+  .offer-label { font: 500 20px/1.3 var(--text); color: #c9cbd1; }
+  .offer-sum { font: 700 clamp(56px, 6.4vw, 92px)/1 var(--text); letter-spacing: -0.02em; }
+  .offer-sum b { background: linear-gradient(120deg, #ffb070, var(--orange)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .offer-pay .btn { align-self: flex-start; margin-top: 20px; }
   .note { margin-top: 32px; font-size: 14px; line-height: 1.5; color: var(--faint); max-width: 720px; }
 
   /* ---------- 6. Multi-Level ---------- */
   .sec-sub { margin-top: 16px; font: 700 clamp(24px, 2.4vw, 32px)/1.25 var(--text); text-wrap: balance; max-width: 820px; }
-  .sec-sub + .grid-3 { margin-top: 40px; }
-  .ml-sub { margin-top: 40px; font: 700 clamp(26px, 2.6vw, 36px)/1.2 var(--text); text-wrap: balance; }
-  .ml-text { margin-top: 24px; font-size: 20px; line-height: 1.45; max-width: 820px; }
-  .ml-h { margin-top: 44px; font: 700 clamp(22px, 2vw, 28px)/1.25 var(--text); }
-  .ml .grid-3 { margin-top: 32px; }
+  .sec-sub + .grid-3, .sec-sub + .steps4 { margin-top: 40px; }
   .ml .card-body { gap: 20px; }
   .ml .card-art { width: auto; max-width: 78%; max-height: 190px; object-fit: contain; margin: auto 40px 44px; align-self: flex-start; }
 
@@ -302,7 +305,7 @@
     .aud .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .aud .grid-3 > .card, .aud .grid-3 > .card:nth-child(n+4) { grid-column: auto; }
     .aud .grid-3 > .card:nth-child(5) { grid-column: span 2; }
-    .cpa-offer { grid-template-columns: minmax(0, 1fr); gap: 32px; margin-top: 40px; }
+    .cpa-offer { grid-template-columns: minmax(0, 1fr); }
     .sup .card, .br .card { min-height: 0; }
     .prog .card-body { min-height: 0; }
   }
@@ -310,7 +313,8 @@
     :root { --radius: 24px; }
     .sec { padding: 40px 0; }
     .sec-title { font-size: 30px; }
-    .sec-lead, .ml-text, .cpa-offer p { font-size: 18px; }
+    .sec-lead, .offer-terms p { font-size: 17px; }
+    .offer-card { padding: 28px 24px 32px; }
     .sec-title + .grid-3, .sec-title + .grid-2, .sec-lead + .grid-3, .steps4 { margin-top: 32px; }
     .grid-3, .grid-2, .join, .stats, .steps4 { grid-template-columns: minmax(0, 1fr); }
     .br-5 { grid-column: auto; }
@@ -321,9 +325,6 @@
     .step { padding: 28px 24px 30px; gap: 20px; }
     .card h3 { font-size: 20px; }
     .ml .card-art, .sup .card-art.pad { margin: auto 24px 28px; }
-    .ml-sub { margin-top: 40px; }
-    .ml-h { margin-top: 44px; }
-    .note { margin-top: 32px; }
     .hdr.open .nav { padding: 4px 16px 12px; }
     .ftr { padding-top: 40px; }
   }
@@ -486,7 +487,8 @@
   <!-- 5. CPA / FTD -->
   <section class="sec cpa" id="cpa">
     <div class="wrap">
-      <h2 class="sec-title rv">CPA / FTD: получайте вознаграждение за каждого нового трейдера</h2>
+      <h2 class="sec-title rv">CPA / FTD</h2>
+      <p class="sec-sub rv">Получайте вознаграждение за каждого нового трейдера</p>
       <div class="steps4">
         <div class="step rv">
           <div class="step-ring"><svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="26" fill="none" stroke="#efeff1" stroke-width="5"/><circle cx="30" cy="30" r="26" fill="none" stroke="#16967a" stroke-width="5" stroke-linecap="round" pathLength="100" stroke-dasharray="22 100" class="draw" style="--len:22"/></svg><span>1</span></div>
@@ -505,24 +507,26 @@
           <h3>Получаете выплаты в зависимости от суммы пополнения счетов</h3>
         </div>
       </div>
-      <div class="cpa-offer rv">
-        <div>
+      <div class="cpa-offer">
+        <div class="offer-card offer-terms rv">
           <h3>Воспользуйтесь одними из самых выгодных условий на рынке*</h3>
           <p>Персональный менеджер рассчитает условия и размер вознаграждения с учетом вашей аудитории, географии и объемов привлечения</p>
+          <p class="note">* По результатам сравнения партнерских предложений NPB Markets и других Forex и CFD брокеров, вознаграждение NPB Markets на 20–30% выше предложений конкурентов.</p>
         </div>
-        <p class="cpa-big">Выплата до 1500$ за&nbsp;одного трейдера</p>
+        <div class="offer-card offer-pay rv">
+          <p class="offer-label">Выплата за одного трейдера</p>
+          <p class="offer-sum">до <b>1500$</b></p>
+          <a class="btn" href="https://mynpb.nl/lprureg" target="_blank" rel="noopener">Стать партнером</a>
+        </div>
       </div>
-      <p class="note rv">* По результатам сравнения партнерских предложений NPB Markets и других Forex и CFD брокеров, вознаграждение NPB Markets на 20–30% выше предложений конкурентов.</p>
     </div>
   </section>
 
   <!-- 6. Multi-Level -->
   <section class="sec ml" id="multilevel">
     <div class="wrap">
-      <h2 class="sec-title rv">Multi-Level: безграничные возможности для развития партнерской сети</h2>
-      <p class="ml-sub rv">Стройте собственную сеть трейдеров и партнеров</p>
-      <p class="ml-text rv">Multi-Level позволяет развивать партнерский бизнес не только за счет самостоятельного привлечения клиентов, но и за счет подключения других партнеров. Привлеченные вами трейдеры также могут становиться вашими партнерами и привлекать собственных клиентов.</p>
-      <h3 class="ml-h rv">Глубина партнерской сети и дохода не ограничена</h3>
+      <h2 class="sec-title rv">Multi-Level</h2>
+      <p class="sec-sub rv">Безграничные возможности для развития партнерской сети</p>
       <div class="grid-3">
         <article class="card rv"><div class="card-body">
           <h3>Количество уровней</h3>
