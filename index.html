@@ -219,17 +219,17 @@
   .steps3 .step { padding: 40px 40px 48px; gap: 28px; }
   .step-num { width: 56px; height: 56px; border-radius: 50%; background: var(--orange); color: #fff; display: grid; place-items: center; font: 700 20px/1 var(--text); }
   .step p { font-size: 17px; line-height: 1.5; margin-top: -12px; }
-  .join { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
-  .qr-card { background: #000; color: #fff; border-radius: var(--radius); padding: 40px; display: flex; flex-direction: column; align-items: center; gap: 36px; }
-  .qr-card .qr { background: #fff; border-radius: 28px; padding: 26px; width: min(100%, 250px); }
+  .join { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: 12px; margin-top: 12px; }
+  .qr-card { background: #000; color: #fff; border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; }
+  .qr-card .qr { background: #fff; border-radius: 18px; padding: 14px; width: 150px; }
   .qr-card .qr img { width: 100%; height: auto; }
-  .qr-card p { font: 500 18px/1.3 var(--text); }
-  .contact-card { background: #fff; border-radius: var(--radius); padding: 40px; display: flex; flex-direction: column; gap: 22px; }
+  .qr-card p { font: 500 16px/1.3 var(--text); }
+  .contact-card { background: #fff; border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; justify-content: center; gap: 22px; }
   .contact { display: flex; align-items: center; gap: 16px; font-size: 18px; text-decoration: none; }
   .contact span { border-bottom: 1px solid currentColor; line-height: 1.3; }
   .contact:hover { color: var(--green); }
   .contact i { flex: none; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; }
-  .contact-card .btn { margin-top: auto; align-self: flex-start; }
+  .contact-card .btn { align-self: flex-start; }
 
   /* ---------- лента наград: едет туда-обратно, при наведении стоит (как на gift) ---------- */
   .aw { background: #fff; padding: 48px 0 40px; }
@@ -330,13 +330,12 @@
       <a href="#multilevel">Multi-Level</a>
       <a href="#support">Поддержка</a>
       <a href="#start">Как начать</a>
-      <a class="nav-login" href="https://mynpb.nl/lpru?utm_1=partner" target="_blank" rel="noopener">Войти в кабинет</a>
+      <a class="nav-login" href="https://mynpb.nl/lpru" target="_blank" rel="noopener">Войти в кабинет</a>
     </nav>
     <div class="hdr-act">
       <button class="burger" type="button" aria-label="Меню" aria-expanded="false"><i></i></button>
-      <!-- ссылки временно со старого сайта rus.npbaffiliates.nl — заменить на ссылки от заказчика -->
-      <a class="login" href="https://mynpb.nl/lpru?utm_1=partner" target="_blank" rel="noopener">Войти</a>
-      <a class="btn" href="https://mynpb.nl/lprureg?utm_1=partner" target="_blank" rel="noopener">Стать партнером</a>
+            <a class="login" href="https://mynpb.nl/lpru" target="_blank" rel="noopener">Войти</a>
+      <a class="btn" href="https://mynpb.nl/lprureg" target="_blank" rel="noopener">Стать партнером</a>
     </div>
   </div>
 </header>
@@ -350,7 +349,7 @@
           <h1>Партнерская программа NPB Markets</h1>
           <p class="hero-sub">Развивайте свой бизнес и увеличивайте доход вместе с надежным Forex и CFD брокером</p>
           <div class="hero-cta">
-            <a class="btn" href="https://mynpb.nl/lprureg?utm_1=partner" target="_blank" rel="noopener">Стать партнером</a>
+            <a class="btn" href="https://mynpb.nl/lprureg" target="_blank" rel="noopener">Стать партнером</a>
             <a class="btn btn-ghost" href="#programs">Типы программ</a>
           </div>
         </div>
@@ -618,12 +617,11 @@
           <p>QR-код для регистрации</p>
         </div>
         <div class="contact-card rv">
-          <!-- контакты временно: Telegram-канал со старого сайта; остальные контакты дать заказчику -->
-          <a class="contact" href="https://t.me/npbmarkets_ru" target="_blank" rel="noopener">
+          <a class="contact" href="https://s.salebot.pro/NPB_1" target="_blank" rel="noopener">
             <i style="background:#2aa3e0"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M21.4 4.1 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.1.8.8.8.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.3-.5-1.9-1.5-1.4ZM8.3 13.9l9.4-5.9c.5-.3.9-.1.5.2l-8 7.2-.3 3.3-1.6-4.8Z"/></svg></i>
-            <span>t.me/npbmarkets_ru</span>
+            <span>Написать в Telegram</span>
           </a>
-          <a class="btn" href="https://mynpb.nl/lprureg?utm_1=partner" target="_blank" rel="noopener">Стать партнером</a>
+          <a class="btn" href="https://mynpb.nl/lprureg" target="_blank" rel="noopener">Стать партнером</a>
         </div>
       </div>
     </div>
