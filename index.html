@@ -70,6 +70,16 @@
   .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
   .hero-viz { position: relative; aspect-ratio: 847 / 654; margin: 24px -12px 0 0; }
   .hero-viz img { width: 100%; height: 100%; object-fit: contain; }
+  /* блик на медной монете: полоса света пробегает по монете раз в 6 секунд.
+     Маска coin-mask.webp вырезана по контуру монеты, поэтому свет не задевает столбики и серебро */
+  .coin-shine { position: absolute; inset: 0; pointer-events: none;
+                -webkit-mask: url(img/coin-mask.webp) center / 100% 100% no-repeat; mask: url(img/coin-mask.webp) center / 100% 100% no-repeat;
+                background: linear-gradient(112deg, transparent 40%, rgba(255, 226, 200, .22) 45.5%, rgba(255, 250, 244, .95) 50%, rgba(255, 226, 200, .22) 54.5%, transparent 60%)
+                            no-repeat 140% 0 / 260% 100%;
+                mix-blend-mode: screen; animation: coin-shine 6s ease-in-out 1.2s infinite; }
+  @keyframes coin-shine { 0% { background-position: 140% 0; } 26%, 100% { background-position: -40% 0; } }
+  @media (prefers-reduced-motion: reduce) { .coin-shine { animation: none; opacity: 0; } }
+
   /* облачка с суммами над столбиками — как на обложке презентации.
      Размер считается от ширины картинки (cqi), на узкой картинке соседние облачка
      поднимаются на разную высоту, от облачка к столбику идёт линия его цвета */
@@ -386,6 +396,7 @@
         </div>
         <div class="hero-viz" aria-hidden="true">
           <img src="img/hero-coins.webp" srcset="img/hero-coins-sm.webp 847w, img/hero-coins.webp 1695w" sizes="(max-width: 860px) 92vw, 600px" width="847" height="654" alt="" fetchpriority="high">
+          <span class="coin-shine"></span>
           <span class="bub bub-1">+642$</span>
           <span class="bub bub-2">+537$</span>
           <span class="bub bub-3">+429$</span>
