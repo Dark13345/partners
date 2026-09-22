@@ -242,6 +242,16 @@
   @media (prefers-reduced-motion: reduce) { .aw-track { animation: none; } .aw-strip { overflow-x: auto; } }
   @media (max-width: 600px) { .aw { padding: 48px 0 56px; } .aw-title { margin-bottom: 24px; } .aw-track { padding: 0 16px; gap: 12px; } .aw-track img { width: 140px; } }
 
+  /* ---------- появление блоков ----------
+     Класс js-anim ставит скрипт, только если анимации разрешены. Без скрипта всё видно сразу. */
+  .js-anim .rv { opacity: 0; translate: 0 28px;
+                 transition: opacity .7s cubic-bezier(.2,.7,.2,1) var(--d, 0s), translate .7s cubic-bezier(.2,.7,.2,1) var(--d, 0s),
+                             background-color .3s ease, color .3s ease, transform .3s ease; }
+  .js-anim .rv.in { opacity: 1; translate: none; }
+  .js-anim .rv .draw { stroke-dashoffset: var(--len); }
+  .js-anim .rv.in .draw { stroke-dashoffset: 0; transition: stroke-dashoffset 1.6s cubic-bezier(.3,.6,.2,1) calc(var(--d, 0s) + .25s); }
+  [data-count] { font-variant-numeric: tabular-nums; }
+
   /* ---------- подвал ---------- */
   .ftr { position: relative; background: #000 url(img/footer-city.webp) center 35% / cover no-repeat; color: #a8abb1; padding: 120px 0 40px; }
   .ftr::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.6) 0%, rgba(0,0,0,.45) 30%, rgba(0,0,0,.86) 62%, rgba(0,0,0,.94) 100%); }
@@ -347,30 +357,30 @@
   <!-- 2. Кому выгодно партнерство -->
   <section class="sec white aud" id="audience">
     <div class="wrap">
-      <h2 class="sec-title">Кому выгодно партнерство с NPB Markets</h2>
-      <p class="sec-lead">Для начала не нужна большая аудитория. Даже несколько привлеченных трейдеров могут стать первым шагом в развитии партнерского бизнеса.</p>
+      <h2 class="sec-title rv">Кому выгодно партнерство с NPB Markets</h2>
+      <p class="sec-lead rv">Для начала не нужна большая аудитория. Даже несколько привлеченных трейдеров могут стать первым шагом в развитии партнерского бизнеса.</p>
       <div class="grid-3">
-        <article class="card aud-1" tabindex="0"><div class="card-body">
+        <article class="card aud-1 rv" tabindex="0"><div class="card-body">
           <img class="ico" src="img/aud-1.webp" width="64" height="64" alt="" loading="lazy">
           <h3>Профессиональные участники рынка</h3>
           <p>Introducing Brokers, профессиональные трейдеры, управляющие, трейдерские сообщества и клубы</p>
         </div></article>
-        <article class="card aud-2" tabindex="0"><div class="card-body">
+        <article class="card aud-2 rv" tabindex="0"><div class="card-body">
           <img class="ico" src="img/aud-2.webp" width="64" height="64" alt="" loading="lazy">
           <h3>Образование и экспертиза</h3>
           <p>Школы и преподаватели трейдинга, аналитики, авторы торговых сигналов</p>
         </div></article>
-        <article class="card aud-3" tabindex="0"><div class="card-body">
+        <article class="card aud-3 rv" tabindex="0"><div class="card-body">
           <img class="ico" src="img/aud-3.webp" width="64" height="64" alt="" loading="lazy">
           <h3>Сервисы для трейдеров</h3>
           <p>Разработчики торговых роботов, индикаторов и торгового ПО, аналитические и информационные сервисы, VPS сервисы</p>
         </div></article>
-        <article class="card aud-4" tabindex="0"><div class="card-body">
+        <article class="card aud-4 rv" tabindex="0"><div class="card-body">
           <img class="ico" src="img/aud-4.webp" width="64" height="64" alt="" loading="lazy">
           <h3>Медиа и привлечение клиентов</h3>
           <p>Финансовые блогеры, тематические каналы, специалисты по привлечению клиентов, владельцы сайтов и вебмастера</p>
         </div></article>
-        <article class="card aud-5" tabindex="0"><div class="card-body">
+        <article class="card aud-5 rv" tabindex="0"><div class="card-body">
           <img class="ico" src="img/aud-5.webp" width="64" height="64" alt="" loading="lazy">
           <h3>Частные трейдеры</h3>
           <p>Рекомендуйте NPB Markets друзьям, знакомым и другим трейдерам и получайте партнерское вознаграждение</p>
@@ -382,27 +392,27 @@
   <!-- 3. Типы партнерских программ -->
   <section class="sec white prog" id="programs">
     <div class="wrap">
-      <h2 class="sec-title">Типы партнерских программ</h2>
+      <h2 class="sec-title rv">Типы партнерских программ</h2>
       <div class="grid-2">
-        <article class="card prog-rs"><div class="card-body">
+        <article class="card prog-rs rv"><div class="card-body">
           <div class="badge badge-rs">RS</div>
           <h3>Revenue Share</h3>
           <p>Получайте регулярное вознаграждение с торговой активности привлеченных трейдеров. До 80% дохода брокера со спреда и комиссии.</p>
           <a class="more" href="#revshare">Подробнее</a>
         </div></article>
-        <article class="card prog-cpa"><div class="card-body">
+        <article class="card prog-cpa rv"><div class="card-body">
           <div class="badge badge-cpa">CPA</div>
           <h3>CPA</h3>
           <p>Получайте вознаграждение за привлечение новых активных клиентов</p>
           <a class="more" href="#cpa">Подробнее</a>
         </div></article>
-        <article class="card prog-ml"><div class="card-body">
+        <article class="card prog-ml rv"><div class="card-body">
           <div class="badge badge-ml">ML</div>
           <h3>Multi-Level</h3>
           <p>Создавайте собственную сеть партнеров и получайте доход с торговой активности привлеченных ими трейдеров</p>
           <a class="more" href="#multilevel">Подробнее</a>
         </div></article>
-        <article class="card prog-pro"><div class="card-body">
+        <article class="card prog-pro rv"><div class="card-body">
           <div class="badge badge-pro">PRO</div>
           <h3>Индивидуальные условия</h3>
           <p>Для профессиональных IB и партнерских сетей возможны специальные условия сотрудничества</p>
@@ -414,37 +424,37 @@
   <!-- 4. Revenue Share -->
   <section class="sec rs" id="revshare">
     <div class="wrap">
-      <h2 class="sec-title">Revenue Share: зарабатывайте с&nbsp;каждой сделки привлеченных трейдеров</h2>
+      <h2 class="sec-title rv">Revenue Share: зарабатывайте с&nbsp;каждой сделки привлеченных трейдеров</h2>
       <div class="grid-3">
-        <article class="card rs-1"><div class="card-body">
+        <article class="card rs-1 rv"><div class="card-body">
           <img class="art-top" src="img/rs-80.webp" width="80" height="80" alt="" loading="lazy">
           <h3>До 80% дохода брокера со спреда и комиссии</h3>
           <p>Вы привлекаете трейдеров в NPB Markets и получаете вознаграждение с каждой совершенной ими сделки</p>
         </div></article>
-        <article class="card rs-2"><div class="card-body">
+        <article class="card rs-2 rv"><div class="card-body">
           <img class="art-top" src="img/rs-bars.webp" width="156" height="80" alt="" loading="lazy">
           <h3>Чем больше клиент торгует, тем выше ваш доход</h3>
           <p>Партнер получает вознаграждение на протяжении всего периода торговой активности клиента</p>
         </div></article>
-        <article class="card rs-3"><div class="card-body">
+        <article class="card rs-3 rv"><div class="card-body">
           <img class="art-top" src="img/rs-circles.webp" width="89" height="80" alt="" loading="lazy">
           <h3>Партнерская программа, с которой выигрывают все</h3>
           <p>Партнер, трейдеры и брокер заинтересованы в росте дохода, торговой активности и долгосрочном сотрудничестве</p>
         </div></article>
       </div>
       <div class="stats">
-        <div class="stat">
+        <div class="stat rv">
           <h3>Средняя выплата<br>за месяц</h3>
           <div class="ring">
-            <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" fill="none" stroke="#f0f0f2" stroke-width="12"/><circle cx="60" cy="60" r="52" fill="none" stroke="#009874" stroke-width="12" stroke-linecap="round" pathLength="100" stroke-dasharray="50 100"/></svg>
-            <b>$8 504</b>
+            <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" fill="none" stroke="#f0f0f2" stroke-width="12"/><circle cx="60" cy="60" r="52" fill="none" stroke="#009874" stroke-width="12" stroke-linecap="round" pathLength="100" stroke-dasharray="50 100" class="draw" style="--len:50"/></svg>
+            <b data-count>$8 504</b>
           </div>
         </div>
-        <div class="stat black">
+        <div class="stat black rv">
           <h3>Максимальная выплата<br>за год</h3>
           <div class="ring">
-            <svg viewBox="0 0 120 120" aria-hidden="true"><defs><linearGradient id="gold" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#b85a06"/><stop offset="1" stop-color="#d8a90a"/></linearGradient></defs><circle cx="60" cy="60" r="52" fill="none" stroke="url(#gold)" stroke-width="12"/></svg>
-            <b>$1 752 190</b>
+            <svg viewBox="0 0 120 120" aria-hidden="true"><defs><linearGradient id="gold" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#b85a06"/><stop offset="1" stop-color="#d8a90a"/></linearGradient></defs><circle cx="60" cy="60" r="52" fill="none" stroke="#262626" stroke-width="12"/><circle cx="60" cy="60" r="52" fill="none" stroke="url(#gold)" stroke-width="12" stroke-linecap="round" pathLength="100" stroke-dasharray="100 100" class="draw" style="--len:100"/></svg>
+            <b data-count>$1 752 190</b>
           </div>
         </div>
       </div>
@@ -454,53 +464,53 @@
   <!-- 5. CPA / FTD -->
   <section class="sec cpa" id="cpa">
     <div class="wrap">
-      <h2 class="sec-title">CPA / FTD: получайте вознаграждение за каждого нового трейдера</h2>
+      <h2 class="sec-title rv">CPA / FTD: получайте вознаграждение за каждого нового трейдера</h2>
       <div class="steps4">
-        <div class="step">
-          <div class="step-ring"><svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="26" fill="none" stroke="#efeff1" stroke-width="5"/><circle cx="30" cy="30" r="26" fill="none" stroke="#16967a" stroke-width="5" stroke-linecap="round" pathLength="100" stroke-dasharray="22 100"/></svg><span>1</span></div>
+        <div class="step rv">
+          <div class="step-ring"><svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="26" fill="none" stroke="#efeff1" stroke-width="5"/><circle cx="30" cy="30" r="26" fill="none" stroke="#16967a" stroke-width="5" stroke-linecap="round" pathLength="100" stroke-dasharray="22 100" class="draw" style="--len:22"/></svg><span>1</span></div>
           <h3>Привлекаете новых трейдеров</h3>
         </div>
-        <div class="step">
-          <div class="step-ring"><svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="26" fill="none" stroke="#efeff1" stroke-width="5"/><circle cx="30" cy="30" r="26" fill="none" stroke="#16967a" stroke-width="5" stroke-linecap="round" pathLength="100" stroke-dasharray="47 100"/></svg><span>2</span></div>
+        <div class="step rv">
+          <div class="step-ring"><svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="26" fill="none" stroke="#efeff1" stroke-width="5"/><circle cx="30" cy="30" r="26" fill="none" stroke="#16967a" stroke-width="5" stroke-linecap="round" pathLength="100" stroke-dasharray="47 100" class="draw" style="--len:47"/></svg><span>2</span></div>
           <h3>Трейдеры пополняют счета</h3>
         </div>
-        <div class="step">
-          <div class="step-ring"><svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="26" fill="none" stroke="#efeff1" stroke-width="5"/><circle cx="30" cy="30" r="26" fill="none" stroke="#16967a" stroke-width="5" stroke-linecap="round" pathLength="100" stroke-dasharray="72 100"/></svg><span>3</span></div>
+        <div class="step rv">
+          <div class="step-ring"><svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="26" fill="none" stroke="#efeff1" stroke-width="5"/><circle cx="30" cy="30" r="26" fill="none" stroke="#16967a" stroke-width="5" stroke-linecap="round" pathLength="100" stroke-dasharray="72 100" class="draw" style="--len:72"/></svg><span>3</span></div>
           <h3>Начинают заключать сделки</h3>
         </div>
-        <div class="step">
-          <div class="step-ring"><svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="26" fill="none" stroke="#16967a" stroke-width="5"/></svg><span>4</span></div>
+        <div class="step rv">
+          <div class="step-ring"><svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="26" fill="none" stroke="#16967a" stroke-width="5" stroke-linecap="round" pathLength="100" stroke-dasharray="100 100" class="draw" style="--len:100"/></svg><span>4</span></div>
           <h3>Получаете выплаты в зависимости от суммы пополнения счетов</h3>
         </div>
       </div>
-      <div class="cpa-offer">
+      <div class="cpa-offer rv">
         <div>
           <h3>Воспользуйтесь одними из самых выгодных условий на рынке*</h3>
           <p>Персональный менеджер рассчитает условия и размер вознаграждения с учетом вашей аудитории, географии и объемов привлечения</p>
         </div>
         <p class="cpa-big">Выплата до 1500$ за&nbsp;одного трейдера</p>
       </div>
-      <p class="note">* По результатам сравнения партнерских предложений NPB Markets и других Forex и CFD брокеров, вознаграждение NPB Markets на 20–30% выше предложений конкурентов.</p>
+      <p class="note rv">* По результатам сравнения партнерских предложений NPB Markets и других Forex и CFD брокеров, вознаграждение NPB Markets на 20–30% выше предложений конкурентов.</p>
     </div>
   </section>
 
   <!-- 6. Multi-Level -->
   <section class="sec ml" id="multilevel">
     <div class="wrap">
-      <h2 class="sec-title">Multi-Level: безграничные возможности для развития партнерской сети</h2>
-      <p class="ml-sub">Стройте собственную сеть трейдеров и партнеров</p>
-      <p class="ml-text">Multi-Level позволяет развивать партнерский бизнес не только за счет самостоятельного привлечения клиентов, но и за счет подключения других партнеров. Привлеченные вами трейдеры также могут становиться вашими партнерами и привлекать собственных клиентов.</p>
-      <h3 class="ml-h">Глубина партнерской сети и дохода не ограничена</h3>
+      <h2 class="sec-title rv">Multi-Level: безграничные возможности для развития партнерской сети</h2>
+      <p class="ml-sub rv">Стройте собственную сеть трейдеров и партнеров</p>
+      <p class="ml-text rv">Multi-Level позволяет развивать партнерский бизнес не только за счет самостоятельного привлечения клиентов, но и за счет подключения других партнеров. Привлеченные вами трейдеры также могут становиться вашими партнерами и привлекать собственных клиентов.</p>
+      <h3 class="ml-h rv">Глубина партнерской сети и дохода не ограничена</h3>
       <div class="grid-3">
-        <article class="card"><div class="card-body">
+        <article class="card rv"><div class="card-body">
           <h3>Количество уровней</h3>
           <p>Создавайте структуру необходимой глубины</p>
         </div><img class="card-art" src="img/ml-tree.webp" width="759" height="528" alt="" loading="lazy"></article>
-        <article class="card"><div class="card-body">
+        <article class="card rv"><div class="card-body">
           <h3>Экономика сети</h3>
           <p>Устанавливайте вознаграждение для партнеров на каждом уровне</p>
         </div><img class="card-art" src="img/ml-bars.webp" width="578" height="456" alt="" loading="lazy"></article>
-        <article class="card"><div class="card-body">
+        <article class="card rv"><div class="card-body">
           <h3>Условия</h3>
           <p>Используйте разные условия для разных участников сети</p>
         </div><img class="card-art" src="img/ml-toggles.webp" width="607" height="477" alt="" loading="lazy"></article>
@@ -511,29 +521,29 @@
   <!-- 7. Помогаем партнерам расти -->
   <section class="sec black sup" id="support">
     <div class="wrap">
-      <h2 class="sec-title">Помогаем партнерам расти и&nbsp;зарабатывать больше</h2>
+      <h2 class="sec-title rv">Помогаем партнерам расти и&nbsp;зарабатывать больше</h2>
       <div class="grid-3">
-        <article class="card sup-1"><div class="card-body">
+        <article class="card sup-1 rv"><div class="card-body">
           <h3>Персональный менеджер</h3>
           <p>Помогает выбрать условия сотрудничества, запустить партнерство и развивать его</p>
         </div><img class="card-art" src="img/sup-manager.webp" width="854" height="717" alt="" loading="lazy"></article>
-        <article class="card sup-2"><div class="card-body">
+        <article class="card sup-2 rv"><div class="card-body">
           <h3>Партнерский кабинет</h3>
           <p>Вся информация о клиентах, партнерах, торговой активности и вознаграждении</p>
         </div><img class="card-art pad" src="img/sup-chart.webp" width="627" height="474" alt="" loading="lazy"></article>
-        <article class="card sup-3"><div class="card-body">
+        <article class="card sup-3 rv"><div class="card-body">
           <h3>Маркетинговая поддержка</h3>
           <p>Готовые материалы, промоакции, лендинги и поддержка собственных рекламных инициатив партнера</p>
         </div><img class="card-art" src="img/sup-phone.webp" width="854" height="617" alt="" loading="lazy"></article>
-        <article class="card sup-4"><div class="card-body">
+        <article class="card sup-4 rv"><div class="card-body">
           <h3>Регулярные выплаты</h3>
           <p>Удобное получение заработанного партнерского вознаграждения</p>
         </div><img class="card-art" src="img/sup-coins.webp" width="854" height="774" alt="" loading="lazy"></article>
-        <article class="card sup-5"><div class="card-body">
+        <article class="card sup-5 rv"><div class="card-body">
           <h3>Инструменты для развития сети</h3>
           <p>Возможности Multi-Level для привлечения партнеров и масштабирования собственной сети</p>
         </div><img class="card-art" src="img/sup-tablet.webp" width="854" height="694" alt="" loading="lazy"></article>
-        <article class="card sup-6"><div class="card-body">
+        <article class="card sup-6 rv"><div class="card-body">
           <h3>Индивидуальные условия</h3>
           <p>Специальные условия для крупных партнеров, профессиональных IB и партнерских сетей</p>
         </div><img class="card-art pad" src="img/sup-dots.webp" width="534" height="521" alt="" loading="lazy"></article>
@@ -544,25 +554,25 @@
   <!-- 8. Брокер, которому можно доверить своих клиентов -->
   <section class="sec white br" id="broker">
     <div class="wrap">
-      <h2 class="sec-title">Брокер, которому можно доверить своих клиентов</h2>
+      <h2 class="sec-title rv">Брокер, которому можно доверить своих клиентов</h2>
       <div class="grid-3">
-        <article class="card br-1"><div class="card-body">
-          <p class="num">30 лет</p>
+        <article class="card br-1 rv"><div class="card-body">
+          <p class="num" data-count>30 лет</p>
           <p>работы на финансовых рынках</p>
         </div><img class="card-art" src="img/br-30.webp" width="854" height="934" alt="" loading="lazy"></article>
-        <article class="card br-2"><div class="card-body">
-          <p class="num">97 стран</p>
+        <article class="card br-2 rv"><div class="card-body">
+          <p class="num" data-count>97 стран</p>
           <p>география присутствия</p>
         </div><img class="card-art" src="img/br-map.webp" width="854" height="934" alt="" loading="lazy"></article>
-        <article class="card br-3"><div class="card-body">
-          <p class="num">100+</p>
+        <article class="card br-3 rv"><div class="card-body">
+          <p class="num" data-count>100+</p>
           <p>торговых инструментов</p>
         </div><img class="card-art" src="img/br-assets.webp" width="854" height="857" alt="" loading="lazy"></article>
-        <article class="card br-4"><div class="card-body">
-          <p class="num">25+</p>
+        <article class="card br-4 rv"><div class="card-body">
+          <p class="num" data-count>25+</p>
           <p>международных наград</p>
         </div><img class="card-art" src="img/br-awards.webp" width="773" height="687" alt="Global Forex Awards, World Forex Award, Business Awards, Traders Union Awards, China Forex Expo, IAFT" loading="lazy"></article>
-        <article class="card br-5"><div class="card-body">
+        <article class="card br-5 rv"><div class="card-body">
           <h3>Брокерский сервис для успешной торговли на мировых финансовых рынках с 1996 года</h3>
         </div><img class="card-art" src="img/br-phones.webp" width="1590" height="759" alt="" loading="lazy"></article>
       </div>
@@ -572,30 +582,30 @@
   <!-- 9. Как стать партнером -->
   <section class="sec" id="start">
     <div class="wrap">
-      <h2 class="sec-title">Как стать партнером NPB Markets</h2>
+      <h2 class="sec-title rv">Как стать партнером NPB Markets</h2>
       <div class="grid-3 steps3">
-        <div class="step">
+        <div class="step rv">
           <div class="step-num">1</div>
           <h3>Зарегистрируйтесь в Личном кабинете</h3>
           <p>Создайте партнерский аккаунт NPB Markets</p>
         </div>
-        <div class="step">
+        <div class="step rv">
           <div class="step-num">2</div>
           <h3>Откройте партнерский торговый счет и выберите подходящий вашему бизнесу тип партнерства</h3>
           <p>Revenue Share, CPA/FTD, Multi-Level или индивидуальные условия</p>
         </div>
-        <div class="step">
+        <div class="step rv">
           <div class="step-num">3</div>
           <h3>Начните привлекать трейдеров и получать вознаграждение</h3>
           <p>Получайте партнерское вознаграждение и развивайте свой бизнес вместе с NPB Markets</p>
         </div>
       </div>
       <div class="join">
-        <div class="qr-card">
+        <div class="qr-card rv">
           <div class="qr"><img src="img/qr-register.svg" width="200" height="200" alt="QR-код: регистрация партнера NPB Markets" loading="lazy"></div>
           <p>QR-код для регистрации</p>
         </div>
-        <div class="contact-card">
+        <div class="contact-card rv">
           <!-- контакты временно: Telegram-канал со старого сайта; остальные контакты дать заказчику -->
           <a class="contact" href="https://t.me/npbmarkets_ru" target="_blank" rel="noopener">
             <i style="background:#2aa3e0"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M21.4 4.1 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.1.8.8.8.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.3-.5-1.9-1.5-1.4ZM8.3 13.9l9.4-5.9c.5-.3.9-.1.5.2l-8 7.2-.3 3.3-1.6-4.8Z"/></svg></i>
@@ -608,8 +618,8 @@
   </section>
   <!-- С нами зарабатывают — движущаяся лента наград, как на gift -->
   <section class="aw" id="awards">
-    <div class="wrap"><h2 class="aw-title">С нами зарабатывают с 1996 года</h2></div>
-    <div class="aw-strip">
+    <div class="wrap"><h2 class="aw-title rv">С нами зарабатывают с 1996 года</h2></div>
+    <div class="aw-strip rv">
       <div class="aw-track">
         <img src="img/award-1.webp" width="367" height="472" alt="Global Forex Awards: Winner, Best Affiliate Forex Broker 2023">
         <img src="img/award-2.webp" width="367" height="472" alt="World Forex Award: Winner, Best Expert Adviser Solutions 2020">
@@ -643,6 +653,47 @@
     var h = document.querySelector('.hdr');
     function on() { h.classList.toggle('scrolled', window.scrollY > 4); }
     window.addEventListener('scroll', on, { passive: true }); on();
+  })();
+
+  // появление блоков, счётчики и кольца — по одному разу, когда блок доехал до экрана
+  (function () {
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document.documentElement.classList.add('js-anim');
+    var reduce = false;
+
+    function countUp(el) {
+      var txt = el.textContent, m = txt.match(/\d[\d\s\u00a0]*/);
+      if (!m) return;
+      var target = parseInt(m[0].replace(/\D/g, ''), 10);
+      var pre = txt.slice(0, m.index), post = txt.slice(m.index + m[0].replace(/\s+$/, '').length);
+      var fmt = function (v) { return pre + String(v).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0') + post; };
+      var t0 = null, dur = 1600;
+      el.textContent = fmt(0);
+      function step(t) {
+        if (t0 === null) t0 = t;
+        var k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+        el.textContent = fmt(Math.round(target * e));
+        if (k < 1) requestAnimationFrame(step); else el.textContent = txt;
+      }
+      requestAnimationFrame(step);
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      var shown = entries.filter(function (e) { return e.isIntersecting; })
+                         .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top || a.boundingClientRect.left - b.boundingClientRect.left; });
+      shown.forEach(function (e, i) {
+        var el = e.target;
+        el.style.setProperty('--d', Math.min(i, 6) * 0.09 + 's');
+        el.classList.add('in');
+        io.unobserve(el);
+        var nums = el.hasAttribute('data-count') ? [el] : el.querySelectorAll('[data-count]');
+        Array.prototype.forEach.call(nums, function (n) { setTimeout(function () { countUp(n); }, Math.min(i, 6) * 90 + 150); });
+        // после появления задержку убираем, чтобы наведение на карточку срабатывало сразу
+        setTimeout(function () { el.style.removeProperty('--d'); }, 1400);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
   })();
 
   // меню на планшете и телефоне
