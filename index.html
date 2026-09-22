@@ -88,22 +88,15 @@
     .bub-3 { --lift: 4.8em; }
   }
 
-  .awards { margin-top: 56px; }
-  .awards-title { font: 700 20px/1.3 var(--text); }
-  .awards-row { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
-  .awards-row img { width: 100%; height: auto; border-radius: 14px; }
 
   /* ---------- планшет ---------- */
   @media (max-width: 1100px) {
     .nav { display: none; }
-    .awards-row { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; margin-right: -24px; padding-right: 24px; scrollbar-width: thin; }
-    .awards-row img { flex: 0 0 128px; width: 128px; scroll-snap-align: start; }
   }
   @media (max-width: 860px) {
     .hero { padding: 20px 0 48px; }
     .hero-grid { grid-template-columns: minmax(0, 1fr); }
     .hero-viz { max-width: 620px; width: 100%; margin: 40px auto 0; }
-    .awards { margin-top: 40px; }
   }
   /* ---------- телефон ---------- */
   @media (max-width: 600px) {
@@ -119,9 +112,6 @@
     .hero-cta { margin-top: 28px; }
     .hero-cta .btn { flex: 1 1 100%; }
     .hero-viz { margin-top: 44px; }
-    .awards-title { font-size: 18px; }
-    .awards-row { margin-right: -16px; padding-right: 16px; }
-    .awards-row img { flex-basis: 116px; width: 116px; }
   }
   @media (max-width: 374px) {
     .logo img { width: 92px; }
@@ -147,10 +137,11 @@
   .ico { width: 64px; height: 64px; border-radius: 16px; }
 
   /* ---------- 2. Кому выгодно ---------- */
-  .aud-1 { background: #3b3b3d; color: #fff; }
-  .aud-2, .aud-4 { background: #f2f2f4; }
-  .aud-3 { background: #e7e3f0; }
-  .aud-5 { background: #dce0e4; }
+  /* все карточки светлые; та, на которую навели, становится темной (как первая карточка на слайде) */
+  .aud .card { background: #f2f2f4; color: var(--ink); transition: background-color .3s ease, color .3s ease, transform .3s ease; }
+  .aud .card .ico { transition: transform .3s ease; }
+  .aud .card:hover, .aud .card:focus-visible { background: #3b3b3d; color: #fff; outline: none; }
+  @media (hover: hover) { .aud .card:hover { transform: translateY(-4px); } .aud .card:hover .ico { transform: scale(1.06); } }
   .aud .card-body { min-height: 100%; }
   .aud .ico { margin-bottom: 20px; }
 
@@ -239,6 +230,17 @@
   .contact:hover { color: var(--green); }
   .contact i { flex: none; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; }
   .contact-card .btn { margin-top: auto; align-self: flex-start; }
+
+  /* ---------- лента наград: едет туда-обратно, при наведении стоит (как на gift) ---------- */
+  .aw { background: #fff; padding: 72px 0 80px; }
+  .aw-title { font-size: clamp(28px, 3vw, 40px); line-height: 1.2; margin-bottom: 40px; }
+  .aw-strip { overflow: hidden; }
+  .aw-track { display: flex; gap: 16px; width: max-content; padding: 0 24px; animation: aw-move 60s ease-in-out .2s infinite; }
+  .aw-track img { width: 176px; height: auto; border-radius: 16px; flex: none; }
+  .aw-strip:hover .aw-track { animation-play-state: paused; }
+  @keyframes aw-move { 0%, 4% { transform: translateX(0); } 48%, 52% { transform: translateX(min(0px, calc(-100% + 100vw))); } 96%, 100% { transform: translateX(0); } }
+  @media (prefers-reduced-motion: reduce) { .aw-track { animation: none; } .aw-strip { overflow-x: auto; } }
+  @media (max-width: 600px) { .aw { padding: 48px 0 56px; } .aw-title { margin-bottom: 24px; } .aw-track { padding: 0 16px; gap: 12px; } .aw-track img { width: 140px; } }
 
   /* ---------- подвал ---------- */
   .ftr { position: relative; background: #000 url(img/footer-city.webp) center 35% / cover no-repeat; color: #a8abb1; padding: 120px 0 40px; }
@@ -340,20 +342,6 @@
         </div>
       </div>
 
-      <div class="awards">
-        <p class="awards-title">С нами зарабатывают с 1996 года</p>
-        <div class="awards-row">
-          <img src="img/award-1.webp" width="367" height="472" loading="lazy" alt="Global Forex Awards: Winner, Best Affiliate Forex Broker 2023">
-          <img src="img/award-2.webp" width="367" height="472" loading="lazy" alt="World Forex Award: Winner, Best Expert Adviser Solutions 2020">
-          <img src="img/award-3.webp" width="367" height="472" loading="lazy" alt="Global Forex Awards: Nominee, Best Forex Mobile Application 2023">
-          <img src="img/award-4.webp" width="367" height="472" loading="lazy" alt="Business Awards: Winner, Most Intelligent Fintech 2020">
-          <img src="img/award-5.webp" width="367" height="472" loading="lazy" alt="Global Forex Awards: Nominee, Best Forex Broker Middle East 2023">
-          <img src="img/award-6.webp" width="367" height="472" loading="lazy" alt="IAFT: Winner, Best Broker CIS 2018">
-          <img src="img/award-7.webp" width="367" height="472" loading="lazy" alt="Global Forex Awards: Nominee, Best Trade Executions 2023">
-          <img src="img/award-8.webp" width="367" height="472" loading="lazy" alt="China Forex Expo: Winner, Best Execution Broker 2017">
-          <img src="img/award-9.webp" width="367" height="472" loading="lazy" alt="Global Forex Awards: Nominee, Best Copy Trading Platform 2023">
-        </div>
-      </div>
     </div>
   </section>
   <!-- 2. Кому выгодно партнерство -->
@@ -362,27 +350,27 @@
       <h2 class="sec-title">Кому выгодно партнерство с NPB Markets</h2>
       <p class="sec-lead">Для начала не нужна большая аудитория. Даже несколько привлеченных трейдеров могут стать первым шагом в развитии партнерского бизнеса.</p>
       <div class="grid-3">
-        <article class="card aud-1"><div class="card-body">
+        <article class="card aud-1" tabindex="0"><div class="card-body">
           <img class="ico" src="img/aud-1.webp" width="64" height="64" alt="" loading="lazy">
           <h3>Профессиональные участники рынка</h3>
           <p>Introducing Brokers, профессиональные трейдеры, управляющие, трейдерские сообщества и клубы</p>
         </div></article>
-        <article class="card aud-2"><div class="card-body">
+        <article class="card aud-2" tabindex="0"><div class="card-body">
           <img class="ico" src="img/aud-2.webp" width="64" height="64" alt="" loading="lazy">
           <h3>Образование и экспертиза</h3>
           <p>Школы и преподаватели трейдинга, аналитики, авторы торговых сигналов</p>
         </div></article>
-        <article class="card aud-3"><div class="card-body">
+        <article class="card aud-3" tabindex="0"><div class="card-body">
           <img class="ico" src="img/aud-3.webp" width="64" height="64" alt="" loading="lazy">
           <h3>Сервисы для трейдеров</h3>
           <p>Разработчики торговых роботов, индикаторов и торгового ПО, аналитические и информационные сервисы, VPS сервисы</p>
         </div></article>
-        <article class="card aud-4"><div class="card-body">
+        <article class="card aud-4" tabindex="0"><div class="card-body">
           <img class="ico" src="img/aud-4.webp" width="64" height="64" alt="" loading="lazy">
           <h3>Медиа и привлечение клиентов</h3>
           <p>Финансовые блогеры, тематические каналы, специалисты по привлечению клиентов, владельцы сайтов и вебмастера</p>
         </div></article>
-        <article class="card aud-5"><div class="card-body">
+        <article class="card aud-5" tabindex="0"><div class="card-body">
           <img class="ico" src="img/aud-5.webp" width="64" height="64" alt="" loading="lazy">
           <h3>Частные трейдеры</h3>
           <p>Рекомендуйте NPB Markets друзьям, знакомым и другим трейдерам и получайте партнерское вознаграждение</p>
@@ -615,6 +603,23 @@
           </a>
           <a class="btn" href="https://mynpb.nl/lprureg?utm_1=partner" target="_blank" rel="noopener">Стать партнером</a>
         </div>
+      </div>
+    </div>
+  </section>
+  <!-- С нами зарабатывают — движущаяся лента наград, как на gift -->
+  <section class="aw" id="awards">
+    <div class="wrap"><h2 class="aw-title">С нами зарабатывают с 1996 года</h2></div>
+    <div class="aw-strip">
+      <div class="aw-track">
+        <img src="img/award-1.webp" width="367" height="472" alt="Global Forex Awards: Winner, Best Affiliate Forex Broker 2023">
+        <img src="img/award-2.webp" width="367" height="472" alt="World Forex Award: Winner, Best Expert Adviser Solutions 2020">
+        <img src="img/award-3.webp" width="367" height="472" alt="Global Forex Awards: Nominee, Best Forex Mobile Application 2023">
+        <img src="img/award-4.webp" width="367" height="472" alt="Business Awards: Winner, Most Intelligent Fintech 2020">
+        <img src="img/award-5.webp" width="367" height="472" alt="Global Forex Awards: Nominee, Best Forex Broker Middle East 2023">
+        <img src="img/award-6.webp" width="367" height="472" alt="IAFT: Winner, Best Broker CIS 2018">
+        <img src="img/award-7.webp" width="367" height="472" alt="Global Forex Awards: Nominee, Best Trade Executions 2023">
+        <img src="img/award-8.webp" width="367" height="472" alt="China Forex Expo: Winner, Best Execution Broker 2017">
+        <img src="img/award-9.webp" width="367" height="472" alt="Global Forex Awards: Nominee, Best Copy Trading Platform 2023">
       </div>
     </div>
   </section>
