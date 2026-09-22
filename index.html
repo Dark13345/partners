@@ -235,12 +235,13 @@
   .aw { background: #fff; padding: 48px 0 40px; }
   .aw-title { font-size: clamp(28px, 3vw, 40px); line-height: 1.2; margin-bottom: 40px; }
   .aw-strip { overflow: hidden; }
-  .aw-track { display: flex; gap: 16px; width: max-content; padding: 0 24px; animation: aw-move 60s ease-in-out .2s infinite; }
+  /* лента из двух одинаковых наборов: сдвиг ровно на один набор — и круг замыкается без рывка */
+  .aw-track { display: flex; gap: 16px; width: max-content; padding-right: 16px; animation: aw-move 32s linear infinite; }
   .aw-track img { width: 176px; height: auto; border-radius: 16px; flex: none; }
   .aw-strip:hover .aw-track { animation-play-state: paused; }
-  @keyframes aw-move { 0%, 4% { transform: translateX(0); } 48%, 52% { transform: translateX(min(0px, calc(-100% + 100vw))); } 96%, 100% { transform: translateX(0); } }
+  @keyframes aw-move { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @media (prefers-reduced-motion: reduce) { .aw-track { animation: none; } .aw-strip { overflow-x: auto; } }
-  @media (max-width: 600px) { .aw { padding: 32px 0 24px; } .aw-title { margin-bottom: 24px; } .aw-track { padding: 0 16px; gap: 12px; } .aw-track img { width: 140px; } }
+  @media (max-width: 600px) { .aw { padding: 32px 0 24px; } .aw-title { margin-bottom: 24px; } .aw-track { gap: 12px; padding-right: 12px; animation-duration: 26s; } .aw-track img { width: 140px; } }
 
   /* ---------- появление блоков ----------
      Класс js-anim ставит скрипт, только если анимации разрешены. Без скрипта всё видно сразу. */
@@ -253,14 +254,26 @@
   [data-count] { font-variant-numeric: tabular-nums; }
 
   /* ---------- подвал ---------- */
-  .ftr { position: relative; background: #000 url(img/footer-city.webp) center 35% / cover no-repeat; color: #a8abb1; padding: 56px 0 40px; }
-  .ftr::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.6) 0%, rgba(0,0,0,.45) 30%, rgba(0,0,0,.86) 62%, rgba(0,0,0,.94) 100%); }
-  .ftr-in { position: relative; display: flex; flex-direction: column; gap: 36px; }
-  .ftr-logo img { width: 200px; height: auto; }
-  .ftr-legal { font-size: 14px; line-height: 1.55; max-width: 900px; }
-  .ftr-bottom { display: flex; flex-wrap: wrap; gap: 12px 32px; font-size: 14px; }
-  .ftr-bottom a { color: #a8abb1; text-decoration: none; }
-  .ftr-bottom a:hover { color: #fff; }
+  .ftr { position: relative; background: #000 url(img/footer-city.webp) center top / max(100%, 1100px) auto no-repeat; color: #a8abb1; padding: 56px 0 40px; }
+  .ftr::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.5) 0, rgba(0,0,0,.62) 150px, rgba(0,0,0,.9) 300px, rgba(0,0,0,.95) 100%); }
+  .ftr-in { position: relative; font-size: 14px; color: #a8abb1; }
+  .w5-top { border-top: 1px solid rgba(255, 255, 255, .18); padding-top: 48px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .ftr-logo img { display: block; width: 136px; height: auto; }
+  .w5-socs { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+  .w5-socs a { display: block; transition: opacity .15s; }
+  .w5-socs a:hover { opacity: .7; }
+  .w5-socs img { display: block; width: 40px; height: 40px; }
+  .w5-legal { padding-top: 64px; }
+  .w5-legal p { margin: 0; line-height: 1.25; color: #a8abb1; }
+  .w5-legal p + p { margin-top: 17.5px; }
+  .w5-bottom { padding-top: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 35px; line-height: 14px; }
+  .w5-bottom a { color: #a8abb1; text-decoration: none; }
+  .w5-bottom a:hover { color: #fff; }
+  @media (max-width: 1100px) {
+    .w5-top { flex-direction: column; align-items: flex-start; gap: 40px; }
+    .w5-legal { padding-top: 48px; }
+    .w5-bottom { flex-direction: column; align-items: flex-start; gap: 14px; }
+  }
 
   /* ---------- меню на планшете и телефоне ---------- */
   .burger { display: none; width: 44px; height: 44px; border: 0; border-radius: 12px; background: #fff; cursor: pointer; flex: none; }
@@ -302,7 +315,6 @@
     .note { margin-top: 32px; }
     .hdr.open .nav { padding: 4px 16px 12px; }
     .ftr { padding-top: 40px; }
-    .ftr-logo img { width: 160px; }
   }
 </style>
 </head>
@@ -630,19 +642,45 @@
         <img src="img/award-7.webp" width="367" height="472" alt="Global Forex Awards: Nominee, Best Trade Executions 2023">
         <img src="img/award-8.webp" width="367" height="472" alt="China Forex Expo: Winner, Best Execution Broker 2017">
         <img src="img/award-9.webp" width="367" height="472" alt="Global Forex Awards: Nominee, Best Copy Trading Platform 2023">
+        <!-- копия для бесшовного круга -->
+        <img src="img/award-1.webp" width="367" height="472" aria-hidden="true" alt="" data-alt="Global Forex Awards: Winner, Best Affiliate Forex Broker 2023">
+        <img src="img/award-2.webp" width="367" height="472" aria-hidden="true" alt="" data-alt="World Forex Award: Winner, Best Expert Adviser Solutions 2020">
+        <img src="img/award-3.webp" width="367" height="472" aria-hidden="true" alt="" data-alt="Global Forex Awards: Nominee, Best Forex Mobile Application 2023">
+        <img src="img/award-4.webp" width="367" height="472" aria-hidden="true" alt="" data-alt="Business Awards: Winner, Most Intelligent Fintech 2020">
+        <img src="img/award-5.webp" width="367" height="472" aria-hidden="true" alt="" data-alt="Global Forex Awards: Nominee, Best Forex Broker Middle East 2023">
+        <img src="img/award-6.webp" width="367" height="472" aria-hidden="true" alt="" data-alt="IAFT: Winner, Best Broker CIS 2018">
+        <img src="img/award-7.webp" width="367" height="472" aria-hidden="true" alt="" data-alt="Global Forex Awards: Nominee, Best Trade Executions 2023">
+        <img src="img/award-8.webp" width="367" height="472" aria-hidden="true" alt="" data-alt="China Forex Expo: Winner, Best Execution Broker 2017">
+        <img src="img/award-9.webp" width="367" height="472" aria-hidden="true" alt="" data-alt="Global Forex Awards: Nominee, Best Copy Trading Platform 2023">
       </div>
     </div>
   </section>
 </main>
 
 <footer class="ftr">
+  <!-- подвал как на gift (welcome500 + соцсети ru.npbmarkets.online), фон с городом — свой -->
   <div class="wrap ftr-in">
-    <a class="ftr-logo" href="#top" aria-label="NPB Markets — наверх"><img src="img/logo-white.svg" width="200" height="64" alt="NPB Markets"></a>
-    <p class="ftr-legal">NPB Markets is a trading name of NMarkets Limited. The services on the website are provided and regulated by NMarkets Limited. Бренд NPB Markets (NEFTEPROMBANKFX) осуществляет обслуживание клиентов c 1996 года. До 2016 года обслуживание частных трейдеров и корпоративных клиентов осуществлялось от лица банка с лицензией Банка России (АО «Нефтепромбанк»). NPB Markets является членом The Financial Commission — международной организации, которая занимается разрешением споров в сфере финансовых услуг на международном валютном рынке.</p>
-    <div class="ftr-bottom">
-      <span>NPB Markets © 2026</span>
-      <a href="https://npbmedia.s3.eu-central-1.amazonaws.com/documents/ru/Privacy-policy.pdf" target="_blank" rel="noopener">Политика конфиденциальности</a>
-      <a href="https://npbmedia.s3.eu-central-1.amazonaws.com/documents/ru/Risk-disclosure.pdf" target="_blank" rel="noopener">Уведомление о рисках</a>
+    <div class="w5-top">
+      <a class="ftr-logo" href="#top" aria-label="NPB Markets — наверх"><img src="img/logo-white.svg" width="136" height="43" alt="NPB Markets"></a>
+      <div class="w5-socs">
+        <!-- соцсети из подвала ru.npbmarkets.online -->
+        <a href="https://www.facebook.com/NPBmarkets" target="_blank" rel="noopener" aria-label="NPB Markets в Facebook"><img src="img/soc-facebook.svg" width="40" height="40" alt=""></a>
+        <a href="https://www.instagram.com/npbmarkets" target="_blank" rel="noopener" aria-label="NPB Markets в Instagram"><img src="img/soc-instagram.svg" width="40" height="40" alt=""></a>
+        <a href="https://x.com/NPBMarkets" target="_blank" rel="noopener" aria-label="NPB Markets в X"><img src="img/soc-x.svg" width="40" height="40" alt=""></a>
+        <a href="https://t.me/npbmarkets_ru" target="_blank" rel="noopener" aria-label="NPB Markets в Telegram"><img src="img/soc-telegram.svg" width="40" height="40" alt=""></a>
+        <a href="https://vk.com/npbmarkets" target="_blank" rel="noopener" aria-label="NPB Markets в VK"><img src="img/soc-vk.svg" width="40" height="40" alt=""></a>
+        <a href="http://www.youtube.com/@NPBMarkets" target="_blank" rel="noopener" aria-label="NPB Markets в YouTube"><img src="img/soc-youtube.svg" width="40" height="40" alt=""></a>
+        <a href="https://max.ru/join/z0NfQs6AMadFfwsFPNI-1tp7zJxa99rv-LMSs2Yvwec" target="_blank" rel="noopener" aria-label="NPB Markets в MAX"><img src="img/soc-max.svg" width="40" height="40" alt=""></a>
+      </div>
+    </div>
+    <div class="w5-legal">
+        <p>The services on the website are provided and regulated by NMarkets Limited a company incorporated in Island of Moheli with registered office at Bonovo Road, Fomboni, Island of Moheli, 1257, Comoros Union, with company registered number HY00922114, and registered license number T2022137, which is regulated by the laws of that country. Partner company NMarkets Limited a company incorporated in Saint Vincent and the Grenadines and registered by the Financial Services Authority with company number 24454 IBC 2018 with registered office at Suite 305, Griffith Corporate Centre, Beachmont, Kingstown, Saint Vincent and the Grenadines based company which is regulated by the laws of that country. Partner company NM Financial Solutions Limited established the partnership agreement with NMarkets Limited to serve as payment processing company and provides content and operates the business. NM Financial Solutions Limited is processing only for the payments from credit and debit cards. Компания NMarkets Limited является членом The Financial Commission — международной организации, которая занимается разрешением споров в сфере финансовых услуг на международных финансовых рынках. Бренд NPB Markets (NEFTEPROMBANKFX) осуществляет обслуживание клиентов c 1996 года.</p>
+        <p>До 2016 года обслуживание частных трейдеров и корпоративных клиентов осуществлялось от лица банка с лицензией Банка России (АО «Нефтепромбанк»). Региональные ограничения: NPB Markets не предоставляет услуги резидентам Канады и США. NPB Markets использует файлы «cookie» с целью персонализации сервисов и повышения удобства пользования веб-сайтом. «Cookie» представляют собой небольшие файлы, содержащие информацию о предыдущих посещениях веб-сайта. Если вы не хотите использовать файлы «cookie», измените настройки браузера. Подробнее — в нашей Политике конфиденциальности.</p>
+    </div>
+    <div class="w5-bottom">
+        <span>©1996–2026 NPB Markets</span>
+        <a href="https://npbmedia.s3.eu-central-1.amazonaws.com/documents/ru/Privacy-policy.pdf" target="_blank" rel="noopener">Политика конфиденциальности</a>
+        <a href="https://npbmedia.s3.eu-central-1.amazonaws.com/documents/ru/Risk-disclosure.pdf" target="_blank" rel="noopener">Уведомление о рисках</a>
     </div>
   </div>
 </footer>
