@@ -63,7 +63,7 @@
   .hdr-act .btn { min-height: 44px; padding: 0 20px; font-size: 15px; border-radius: 12px; }
 
   /* ---------- первый экран ---------- */
-  .hero { padding: 40px 0 48px; }
+  .hero { padding: 40px 0 72px; }
   .hero-grid { display: grid; grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr); align-items: center; gap: 16px; }
   .hero h1 { font-size: clamp(38px, 4.4vw, 58px); line-height: 1.06; }
   .hero-sub { margin-top: 24px; font: 700 clamp(20px, 2vw, 26px)/1.3 var(--text); max-width: 560px; text-wrap: balance; }
@@ -120,7 +120,7 @@
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
   /* ---------- общие блоки ---------- */
-  .sec { padding: 64px 0; }
+  .sec { padding: 88px 0; }
   .sec.white { background: #fff; }
   .sec.black { background: #000; color: #fff; }
   .sec-title { font-size: clamp(32px, 3.9vw, 52px); line-height: 1.1; max-width: 900px; }
@@ -202,6 +202,20 @@
   .ml .card-body { gap: 20px; }
   .ml .card-art { width: auto; max-width: 78%; max-height: 190px; object-fit: contain; margin: auto 40px 44px; align-self: flex-start; }
 
+  /* «Условия»: переключатель кликается — ползунок едет, цвет меняется */
+  .ml-ctrl { --u: 80px; display: grid; grid-template-columns: auto auto; gap: 12px; justify-content: start; margin: auto 40px 44px; }
+  .mc-dot { width: var(--u); height: var(--u); border-radius: 50%; background: #00cc2c; display: grid; place-items: center; transition: background-color .35s ease; }
+  .mc-dot svg { width: 40%; height: 40%; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .mc-switch { position: relative; width: calc(var(--u) * 1.72); height: var(--u); border: 0; padding: 0; border-radius: var(--u); cursor: pointer;
+               background: #d6d8de; transition: background-color .35s ease, box-shadow .15s ease; }
+  .mc-switch i { position: absolute; top: 7px; left: 7px; width: calc(var(--u) - 14px); height: calc(var(--u) - 14px); border-radius: 50%; background: #fff;
+                 box-shadow: 0 2px 6px rgba(0, 0, 0, .18); transition: transform .35s cubic-bezier(.3, .7, .2, 1.2); }
+  .mc-switch.is-on { background: #00cc2c; }
+  .mc-switch.is-on i { transform: translateX(calc(var(--u) * .72)); }
+  .mc-switch:hover { box-shadow: 0 0 0 4px rgba(0, 204, 44, .18); }
+  .mc-switch:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+  .ml-ctrl:not(:has(.is-on)) .mc-dot { background: #b8bcc4; }
+
   /* ---------- 7. Помогаем партнерам ---------- */
   .sup .card { min-height: 520px; }
   .sup-1 { background: #151515; color: #fff; }
@@ -240,7 +254,7 @@
   .contact-card .btn { align-self: flex-start; }
 
   /* ---------- лента наград: едет туда-обратно, при наведении стоит (как на gift) ---------- */
-  .aw { background: #fff; padding: 48px 0 40px; }
+  .aw { background: #fff; padding: 72px 0 64px; }
   .aw-title { font-size: clamp(28px, 3vw, 40px); line-height: 1.2; margin-bottom: 40px; }
   .aw-strip { overflow: hidden; }
   /* лента из двух одинаковых наборов: сдвиг ровно на один набор — и круг замыкается без рывка */
@@ -262,14 +276,13 @@
   [data-count] { font-variant-numeric: tabular-nums; }
 
   /* ---------- подвал ---------- */
-  .ftr { position: relative; background: #000 url(img/footer-city.webp) center top / max(100%, 1100px) auto no-repeat; color: #a8abb1; padding: 56px 0 40px; }
-  .ftr::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.5) 0, rgba(0,0,0,.62) 150px, rgba(0,0,0,.9) 300px, rgba(0,0,0,.95) 100%); }
+  .ftr { position: relative; background: #000; color: #a8abb1; padding: 72px 0 40px; }
   .ftr-in { position: relative; font-size: 14px; color: #a8abb1; }
   .w5-top { border-top: 1px solid rgba(255, 255, 255, .18); padding-top: 48px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
   .ftr-logo img { display: block; width: 136px; height: auto; }
   .w5-socs { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
-  .w5-socs a { display: block; transition: opacity .15s; }
-  .w5-socs a:hover { opacity: .7; }
+  .w5-socs a { display: block; border-radius: 50%; transition: filter .15s; }
+  .w5-socs a:hover { filter: brightness(1.9); }
   .w5-socs img { display: block; width: 40px; height: 40px; }
   .w5-legal { padding-top: 64px; }
   .w5-legal p { margin: 0; line-height: 1.25; color: #a8abb1; }
@@ -300,6 +313,9 @@
   }
   @media (max-width: 860px) {
     .sec { padding: 52px 0; }
+    .hero { padding-bottom: 40px; }
+    .aw { padding: 52px 0 44px; }
+    .ftr { padding-top: 56px; }
     .grid-3, .join { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .br-5 { grid-column: span 2; }
     .aud .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -325,8 +341,11 @@
     .step { padding: 28px 24px 30px; gap: 20px; }
     .card h3 { font-size: 20px; }
     .ml .card-art, .sup .card-art.pad { margin: auto 24px 28px; }
+    .ml-ctrl { --u: 68px; }
     .hdr.open .nav { padding: 4px 16px 12px; }
     .ftr { padding-top: 40px; }
+    .hero { padding-bottom: 32px; }
+    .aw { padding: 32px 0 24px; }
   }
 </style>
 </head>
@@ -539,7 +558,12 @@
         <article class="card rv"><div class="card-body">
           <h3>Условия</h3>
           <p>Используйте разные условия для разных участников сети</p>
-        </div><img class="card-art" src="img/ml-toggles.webp" width="607" height="477" alt="" loading="lazy"></article>
+        </div><div class="card-art ml-ctrl">
+          <span class="mc-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span>
+          <button class="mc-switch is-on" type="button" aria-pressed="true" aria-label="Разные условия для разных участников сети"><i></i></button>
+          <span class="mc-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.2-3.6 4-5.5 7.5-5.5s6.3 1.9 7.5 5.5"/></svg></span>
+          <span class="mc-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></span>
+        </div></article>
       </div>
     </div>
   </section>
@@ -746,6 +770,14 @@
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
     document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
   })();
+
+  // переключатель в карточке «Условия»
+  document.querySelectorAll('.mc-switch').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var on = b.classList.toggle('is-on');
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  });
 
   // меню на планшете и телефоне
   (function () {
